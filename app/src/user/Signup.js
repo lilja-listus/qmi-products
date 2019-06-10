@@ -1,9 +1,10 @@
 import React from "react";
 import Layout from "../core/Layout";
+import { API } from "../config";
 
 const Signup = () => (
   <Layout title="Signup" description="Sign up to QMI web shop">
-    {process.env.REACT_APP_API_URL}
+    {API}
   </Layout>
 );
 
