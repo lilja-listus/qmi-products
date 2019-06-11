@@ -56,3 +56,18 @@ export const signout = next => {
       .catch(err => console.log(err));
   }
 };
+/**
+ *
+ * The method we use to check whether the user is signed in or out to conditionally sign in and sign out links
+ *  */
+
+export const isAuthenticated = () => {
+  if (typeof window == "undefined") {
+    return false;
+  }
+  if (localStorage.getItem("jwt")) {
+    return JSON.parse(localStorage.getItem("jwt")); //to make sure it is in JSON format we use parse
+  } else {
+    return false;
+  }
+};
