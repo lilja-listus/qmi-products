@@ -33,3 +33,11 @@ export const signin = user => {
       console.log(err);
     });
 };
+
+export const authenticate = (data, next) => {
+  //local storage is a property of the window object
+  if (typeof window !== "undefined") {
+    localStorage.setItem("jwt", JSON.stringify(data)); // jwt is the key, second argument is the data we save under that key
+    next();
+  }
+};
