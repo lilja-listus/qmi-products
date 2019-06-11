@@ -2,6 +2,12 @@
 
 State hooks.
 
+#signout
+
+- clear the local storage from jwt
+- make request to backend
+- redirect to homepage
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
