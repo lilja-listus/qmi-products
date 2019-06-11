@@ -41,3 +41,18 @@ export const authenticate = (data, next) => {
     next();
   }
 };
+
+export const signout = next => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("jwt"); // we remove jwt if it exists
+    next();
+    //after that we sign out
+    return fetch(`${API}/signout`, {
+      method: "GET"
+    })
+      .then(response => {
+        console.log("signout", response);
+      })
+      .catch(err => console.log(err));
+  }
+};
