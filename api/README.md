@@ -22,9 +22,12 @@ As a database I am using a cluster on mongoDB.Atlas. To communicate with mongo D
 ## Passwords
 
 Crypto is a node.js module to hash password:
-`crypto.createHmac('ssha1', this.salt)`
-`.update(password)`
-`.digest('hex')`
+
+```
+crypto.createHmac('ssha1', this.salt)
+      .update(password)
+      .digest('hex')
+```
 
 # Functionality
 

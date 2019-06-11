@@ -1,6 +1,6 @@
 # Description
 
-This is a website for internet-shop for qmiproducts.
+This is an online store for QMI products.
 
 # Technology
 
