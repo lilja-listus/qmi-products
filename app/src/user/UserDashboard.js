@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const {
-    user: { name, email, role }
+    user: { _id, name, email, role }
   } = isAuthenticated();
+
+  console.log(_id);
 
   const userLinks = () => {
     return (
@@ -58,16 +60,14 @@ const Dashboard = () => {
     <Layout
       title="Dashboard"
       description={`Good day ${name}!`}
-      className="container"
+      className="container-fluid"
     >
       <div className="row">
         <div className="col-3"> {userLinks()} </div>
         <div className="col-9">
           {userInfo()} {purchaseHistory()}
         </div>
-        ..
       </div>
-      ...
     </Layout>
   );
 };

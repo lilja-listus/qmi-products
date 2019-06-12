@@ -32,12 +32,11 @@ exports.read = (req, res) => {
 exports.update = (req, res) => {
   const category = req.category;
   category.name = req.body.name;
-  console.log("is ti here", req);
 
   category.save((err, data) => {
     if (err) {
       return res.status(400).json({
-        error: "cannot update"
+        error: errorHandler(err)
       });
     }
     res.json(data);
