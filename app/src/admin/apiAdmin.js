@@ -1,5 +1,6 @@
 import { API } from "../config";
 
+//function that connects to backend
 export const createCategory = (userId, token, category) => {
   return fetch(`${API}/category/create/${userId}`, {
     method: "POST",
@@ -9,6 +10,23 @@ export const createCategory = (userId, token, category) => {
       Authorization: `Bearer ${token}`
     },
     body: JSON.stringify(category)
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const createProduct = (userId, token, product) => {
+  return fetch(`${API}/product/create/${userId}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: product
   })
     .then(response => {
       return response.json();

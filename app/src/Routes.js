@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom"; //will make the props awailable for all the nested components.
+import { BrowserRouter, Switch, Route } from "react-router-dom"; //will make the props available for all the nested components.
 import Signin from "./user/Signin";
 import Signup from "./user/Signup";
 import Home from "./core/Home";
@@ -8,6 +8,7 @@ import Dashboard from "./user/UserDashboard";
 import AdminRoute from "./auth/AdminRoute";
 import AdminDashboard from "./user/AdminDashboard";
 import AddCategory from "./admin/AddCategory";
+import AddProduct from "./admin/AddProduct";
 
 const Routes = () => {
   return (
@@ -19,6 +20,7 @@ const Routes = () => {
         <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
         <AdminRoute path="/create/category" exact component={AddCategory} />
+        <AdminRoute path="/create/product" exact component={AddProduct} />
       </Switch>
     </BrowserRouter>
   );
