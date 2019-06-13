@@ -1,3 +1,4 @@
+//tslint:disable
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
@@ -23,6 +24,7 @@ const AddProduct = () => {
 
   const { user, token } = isAuthenticated();
 
+  //ts-lint disable
   const {
     name,
     description,
