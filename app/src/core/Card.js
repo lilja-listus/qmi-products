@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ShowImage from "./ShowImage";
 
 const Card = ({ product }) => {
   return (
@@ -9,6 +10,7 @@ const Card = ({ product }) => {
           {product.name}
           <div className="card-body">
             <p>{product.description}</p>
+            <ShowImage item={product} url="product" />
             <p>{product.price}</p>
             <Link to="/">
               <button className="btn btn-outline-primary mt-2 mb-2">
