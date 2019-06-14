@@ -11,10 +11,10 @@ const Card = ({ product }) => {
           <div className="card-body">
             <p>{product.description}</p>
             <ShowImage item={product} url="product" />
-            <p>{product.price}</p>
+            <p>{product.price} NOK</p>
             <Link to="/">
               <button className="btn btn-outline-primary mt-2 mb-2">
-                View Product{" "}
+                View Product
               </button>
               <button className="btn btn-outline-warning mt-2 mb-2">
                 Add to card
