@@ -1,24 +1,26 @@
 import React, { useState, useEffect, Fragment } from "react";
 
-const RadioBox = ({ prices }) => {
+const RadioBox = ({ prices, handleFilters }) => {
   const [value, setValue] = useState(0);
 
-  const handleChange = () => {
-    //
+  const handleChange = event => {
+    handleFilters(event.target.value);
+    setValue(event.target.value);
   };
 
   return prices.map((
-    p,
+    price,
     i //key={i}  - so that each of them have unique index
   ) => (
     <div key={i}>
       <input
         onChange={handleChange}
-        value={`${p._id}`}
+        value={`${price._id}`}
+        name={price}
         type="radio"
         className="mr-2 ml-4"
       />
-      <label className="form-check-label">{p.name}</label>
+      <label className="form-check-label">{price.name}</label>
     </div>
   ));
 };
