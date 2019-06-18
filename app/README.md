@@ -13,3 +13,13 @@ State hooks.
 - clear the local storage from jwt
 - make request to backend
 - redirect to homepage
+
+query-string package for making queries.
+
+```
+  const query = queryString.stringify(params);
+
+  return fetch(`${API}/products/search?{query}`, {
+    method: "GET"
+  })
+```
