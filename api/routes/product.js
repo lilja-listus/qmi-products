@@ -12,13 +12,15 @@ const {
   list,
   listCategories,
   listBySearch,
-  photo
+  photo,
+  listSearch
 } = require("../controllers/product");
 const { userById } = require("../controllers/user");
 
 router.get("/product/:productId", read);
 router.post("/product/create/:userId", requireSignin, isAuth, isAdmin, create);
 router.post("/products/by/search", listBySearch);
+router.get("/products/search", listSearch);
 router.delete(
   "/product/:productId/:userId",
   requireSignin,

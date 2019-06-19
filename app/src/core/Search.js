@@ -80,12 +80,20 @@ const Search = () => {
     </form>
   );
 
+  const searchedProducts = (results = []) => {
+    return (
+      <div className="row">
+        {results.map((product, i) => (
+          <Card key={i} product={product} />
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="row">
-      <div className="container mb-3">
-        {searchForm()}
-        {JSON.stringify(results)}
-      </div>
+      <div className="container mb-3">{searchForm()}</div>
+      <div className="container-fluid mb-3">{searchedProducts(results)}</div>
     </div>
   );
 };
