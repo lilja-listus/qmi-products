@@ -23,3 +23,12 @@ query-string package for making queries.
     method: "GET"
   })
 ```
+
+Library moment for date.
+
+```
+          <p className="black-8">Added on {moment(product.createdAt).fromNow()}</p>
+
+```
+
+It creates output like `Added on 7 days ago`
