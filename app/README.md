@@ -32,3 +32,19 @@ Library moment for date.
 ```
 
 It creates output like `Added on 7 days ago`
+
+# React hooks
+
+```
+ useEffect(() => {
+    const productId = props.match.params.productId;
+    loadSingleProduct(productId);
+  }, [props]);
+
+```
+
+we need it when the component mounts ->
+
+it runs when it is loaded for the first time or changes
+
+we use `[props]` for whenever the props change we want to use effect, reload
