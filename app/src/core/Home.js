@@ -32,7 +32,7 @@ const Home = () => {
   useEffect(() => {
     loadProductsByArrival();
     loadProductsBySell();
-  }, []); //it runs when it is loaded for the first time or changes
+  }, []);
 
   return (
     <Layout

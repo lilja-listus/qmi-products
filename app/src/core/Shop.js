@@ -65,7 +65,6 @@ const Shop = () => {
     );
   };
 
-  //we need it when the component mounts ->
   useEffect(() => {
     init();
     loadFilteredResults(skip, limit, myFilters.filters);

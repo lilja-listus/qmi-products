@@ -30,7 +30,7 @@ const Product = props => {
   useEffect(() => {
     const productId = props.match.params.productId;
     loadSingleProduct(productId);
-  }, [props]); //whenever the props change we want to use effect, reload
+  }, [props]);
 
   return (
     <Layout
