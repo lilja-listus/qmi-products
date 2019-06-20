@@ -92,10 +92,10 @@ const Card = ({
     );
   };
 
-  const handleChange = product => event => {
+  const handleChange = productId => event => {
     setCount(event.target.value < 1 ? 1 : event.target.value);
     if (event.target.value >= 1) {
-      updateItem(product._id, event.target.value);
+      updateItem(productId, event.target.value);
     }
   };
 
