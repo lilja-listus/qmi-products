@@ -48,3 +48,11 @@ we need it when the component mounts ->
 it runs when it is loaded for the first time or changes
 
 we use `[props]` for whenever the props change we want to use effect, reload
+
+# Array
+
+```
+cart = Array.from(new Set(cart.map(p => p._id)));
+```
+
+`new Set ()` removes the duplicates
