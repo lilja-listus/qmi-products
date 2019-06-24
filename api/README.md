@@ -33,3 +33,5 @@ crypto.createHmac('ssha1', this.salt)
 
 Only admin can create new category and he can access data of other users.
 The routes are protected by middleware that checks whether the user is signed in, authorized and whether is admin for specific routes.
+
+braintree for payments.
