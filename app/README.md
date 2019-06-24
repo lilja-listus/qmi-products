@@ -56,3 +56,7 @@ cart = Array.from(new Set(cart.map(p => p._id)));
 ```
 
 `new Set ()` removes the duplicates
+
+`yarn add braintree-web-drop-in-react`
+
+braintree for payments.
