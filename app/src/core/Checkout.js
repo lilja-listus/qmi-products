@@ -58,6 +58,8 @@ const Checkout = ({ products }) => {
     );
   };
 
+  const deliveryAddress = data.address;
+
   const buy = () => {
     setData({ loading: true });
     //send the nonce to your server
@@ -77,16 +79,17 @@ const Checkout = ({ products }) => {
 
         processPayment(userId, token, paymentData)
           .then(response => {
-            console.log(response);
+            console.log("dadadadada", data);
 
             const createOrderData = {
               products: products,
               transaction_id: response.transaction.id,
               amount: response.transaction.amount,
-              address: data.address //???
+              address: deliveryAddress
             };
 
             createOrder(userId, token, createOrderData).then(response => {
+              console.log("the data for order", createOrderData);
               emptyCart(() => {
                 console.log("payment success");
 
@@ -120,7 +123,7 @@ const Checkout = ({ products }) => {
     >
       {data.clientToken !== null && products.length > 0 ? (
         <div>
-          <div className="gorm-group mb-3">
+          <div className="form-group mb-3">
             <label className="text-muted">Delivery address:</label>
             <textarea
               onChange={handleAddress}
