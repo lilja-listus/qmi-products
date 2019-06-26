@@ -38,6 +38,10 @@ const Checkout = ({ products }) => {
     getToken(userId, token);
   }, []);
 
+  const handleAddress = event => {
+    setData({ ...data, address: event.target.value });
+  };
+
   const getTotal = () => {
     return products.reduce((currentValue, nextValue) => {
       return currentValue + nextValue.count * nextValue.price;
@@ -70,22 +74,25 @@ const Checkout = ({ products }) => {
           paymentMethodNonce: nonce,
           amount: getTotal(products)
         };
+
         processPayment(userId, token, paymentData)
           .then(response => {
+            console.log(response);
+
             const createOrderData = {
               products: products,
               transaction_id: response.transaction.id,
               amount: response.transaction.amount,
-              address: data.address
+              address: data.address //???
             };
 
-            createOrder(userId, token, createOrderData);
+            createOrder(userId, token, createOrderData).then(response => {
+              emptyCart(() => {
+                console.log("payment success");
 
-            setData({ ...data, success: response.success });
-
-            emptyCart(() => {
-              console.log("payment success");
-              setData({ loading: false });
+                setData({ loading: false, success: true });
+              });
+              setData({ loading: false, success: true });
             });
           })
           .catch(error => {
@@ -93,14 +100,16 @@ const Checkout = ({ products }) => {
             setData({ loading: false });
           });
       })
+
+      .catch(error => {
+        console.log(error);
+        setData({ loading: false });
+      })
+
       .catch(error => {
         // console.log("dropin error: ", error);
         setData({ ...data, error: error.message });
       });
-  };
-
-  const handleAddress = event => {
-    setData({ ...data, address: event.target.value });
   };
 
   const showDropIn = () => (
@@ -156,7 +165,8 @@ const Checkout = ({ products }) => {
     </div>
   );
 
-  const showLoading = loading => loading && <h2>Loading...</h2>;
+  const showLoading = loading =>
+    loading && <h2 className="text-danger">Loading...</h2>;
 
   return (
     <div>
