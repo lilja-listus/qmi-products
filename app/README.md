@@ -60,3 +60,6 @@ cart = Array.from(new Set(cart.map(p => p._id)));
 `yarn add braintree-web-drop-in-react`
 
 braintree for payments.
+
+Package `compression`
+react app is served from Build directory
