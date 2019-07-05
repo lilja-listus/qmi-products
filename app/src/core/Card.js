@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import ShowImage from "./ShowImage";
-import moment from "moment";
 import { addItem, updateItem, removeItem } from "./cartHelpers";
 
 const Card = ({
@@ -109,9 +108,6 @@ const Card = ({
         <p className="black-10"> {product.price} NOK</p>
         <p className="black-9">
           Category: {product.category && product.category.name}
-        </p>
-        <p className="black-8">
-          Added on {moment(product.createdAt).fromNow()}
         </p>
 
         {showStock(product.quantity)}
