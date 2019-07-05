@@ -59,7 +59,36 @@ cart = Array.from(new Set(cart.map(p => p._id)));
 
 `yarn add braintree-web-drop-in-react`
 
-braintree for payments.
+Use braintree for payments.
 
 Package `compression`
 react app is served from Build directory
+
+Configure nginx server:
+
+add in /etc/nginx/conf.d default.conf
+
+```
+server{
+
+location /api {
+        proxy_pass http://localhost:8000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade
+        }
+
+location /{
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrate $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+}
+}
+```
+
+Don't forget to reboot the server `server reboot nginx`
