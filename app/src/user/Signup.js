@@ -31,7 +31,7 @@ const Signup = () => {
   const clickSubmit = event => {
     event.preventDefault(); //so that browser is not reloaded when the button is clicked.
     setValues({ ...values, error: false });
-    signup({ name, email, password }).then(data => {
+    signup({ name, email, password, phone }).then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error, success: false });
       } else {
