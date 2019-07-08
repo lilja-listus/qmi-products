@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
-import { getCart, removeItem } from "./cartHelpers";
+import { getCart } from "./cartHelpers";
 import Card from "./Card";
 import { Link } from "react-router-dom";
 import Checkout from "./Checkout";
+import { norwegian } from "../text";
 
 const Cart = () => {
   const [items, setItems] = useState([]);
@@ -15,7 +16,11 @@ const Cart = () => {
   const showItems = items => {
     return (
       <div>
-        <h2>Your cart has {`${items.length}`} items</h2>
+        <h2>
+          {norwegian.yourCartHas}
+          {` ${items.length} `}
+          {norwegian.items}
+        </h2>
         <hr />
         {items.map((product, i) => (
           <Card

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import ShowImage from "./ShowImage";
 import { addItem, updateItem, removeItem } from "./cartHelpers";
+import { norwegian } from "../text";
 
 const Card = ({
   product,
@@ -44,7 +45,7 @@ const Card = ({
           onClick={addToCart}
           className="btn btn-outline-warning mt-2 mb-2"
         >
-          Add to card
+          {norwegian.addToCart}
         </button>
       )
     );
@@ -57,7 +58,7 @@ const Card = ({
           onClick={() => removeItem(product._id)}
           className="btn btn-outline-danger mt-2 mb-2"
         >
-          Remove Product
+          {norwegian.removeProduct}
         </button>
       )
     );
@@ -65,9 +66,13 @@ const Card = ({
 
   const showStock = quantity => {
     return quantity > 0 ? (
-      <span className="badge badge-primary badge-pill">In Stock</span>
+      <span className="badge badge-primary badge-pill">
+        {norwegian.inStock}
+      </span>
     ) : (
-      <span className="badge badge-primary badge-pill">Out of stock</span>
+      <span className="badge badge-primary badge-pill">
+        {norwegian.outOfStock}
+      </span>
     );
   };
 
@@ -77,7 +82,9 @@ const Card = ({
         <div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text">Adjust Quantity</span>
+              <span className="input-group-text">
+                {norwegian.adjustQuantity}
+              </span>
             </div>
             <input
               type="number"
