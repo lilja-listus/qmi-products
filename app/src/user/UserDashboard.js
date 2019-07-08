@@ -33,12 +33,12 @@ const Dashboard = () => {
       <div className="card">
         <h4 className="card-header">User Links</h4>
         <ul className="list-group">
-          <li class="list-group-item">
+          <li className="list-group-item">
             <Link className="nav-link" to="/cart">
               My Cart
             </Link>
           </li>
-          <li class="list-group-item">
+          <li className="list-group-item">
             <Link className="nav-link" to={`/profile/${_id}`}>
               Update Profile
             </Link>
@@ -53,9 +53,9 @@ const Dashboard = () => {
       <div className="card mb-5">
         <h3 className="card-header">User Information</h3>
         <ul className="list-group">
-          <li class="list-group-item">{name}</li>
-          <li class="list-group-item">{email}</li>
-          <li class="list-group-item">
+          <li className="list-group-item">{name}</li>
+          <li className="list-group-item">{email}</li>
+          <li className="list-group-item">
             {role === 1 ? "Admin" : "Registered user"}
           </li>
         </ul>
