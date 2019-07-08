@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema(
     history: {
       type: Array,
       default: []
+    },
+    phone: {
+      type: String,
+      trim: true
     }
   },
   { timestamps: true }

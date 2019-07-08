@@ -8,6 +8,7 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
+    phone: "",
     error: "",
     success: false
   });
@@ -16,7 +17,7 @@ const Signup = () => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const { name, email, password, success, error } = values;
+  const { name, email, password, success, phone, error } = values;
 
   const clickSubmit = event => {
     event.preventDefault(); //so that browser is not reloaded when the button is clicked.
@@ -30,6 +31,7 @@ const Signup = () => {
           name: "",
           email: "",
           password: "",
+          phone: "",
           error: "",
           success: true
         });
@@ -66,6 +68,15 @@ const Signup = () => {
           type="password"
           className="form-control"
           value={password}
+        />
+      </div>
+      <div className="form-group">
+        <label className="text-muted">Phone</label>
+        <input
+          onChange={handleChange("phone")}
+          type="phone"
+          className="form-control"
+          value={phone}
         />
       </div>
       <button onClick={clickSubmit} className="btn btn-primary">

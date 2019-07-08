@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { read, update, updateUser } from "./apiUser";
 
 const Profile = ({ match }) => {
@@ -9,21 +9,26 @@ const Profile = ({ match }) => {
     name: "",
     email: "",
     password: "",
+    phone: "",
     error: false,
     success: false
   });
 
   const { token } = isAuthenticated();
 
-  const { name, email, password, error, success } = values;
+  const { name, email, password, error, success, phone } = values;
 
   const init = userId => {
-    // console.log(userId);
     read(userId, token).then(data => {
       if (data.error) {
         setValues({ ...values, error: true });
       } else {
-        setValues({ ...values, name: data.name, email: data.email });
+        setValues({
+          ...values,
+          name: data.name,
+          email: data.email,
+          phone: data.phone
+        });
       }
     });
   };
@@ -38,20 +43,23 @@ const Profile = ({ match }) => {
 
   const clickSubmit = e => {
     e.preventDefault();
-    update(match.params.userId, token, { name, email, password }).then(data => {
-      if (data.error) {
-        console.log(data.error);
-      } else {
-        updateUser(data, () => {
-          setValues({
-            ...values,
-            name: data.name,
-            email: data.email,
-            success: true
+    update(match.params.userId, token, { name, email, password, phone }).then(
+      data => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          updateUser(data, () => {
+            setValues({
+              ...values,
+              name: data.name,
+              email: data.email,
+              phone: data.phone,
+              success: true
+            });
           });
-        });
+        }
       }
-    });
+    );
   };
 
   const redirectUser = success => {
@@ -60,7 +68,7 @@ const Profile = ({ match }) => {
     }
   };
 
-  const profileUpdate = (name, email, password) => (
+  const profileUpdate = (name, email, password, phone) => (
     <form>
       <div className="form-group">
         <label className="text-muted">Name</label>
@@ -89,6 +97,16 @@ const Profile = ({ match }) => {
           value={password}
         />
       </div>
+
+      <div className="form-group">
+        <label className="text-muted">phone</label>
+        <input
+          type="phone"
+          onChange={handleChange("phone")}
+          className="form-control"
+          value={phone}
+        />
+      </div>
       <button onClick={clickSubmit} className="btn btn-primary">
         Submit
       </button>
@@ -103,7 +121,7 @@ const Profile = ({ match }) => {
     >
       {" "}
       <h2 className="mb-4">Profile update</h2>
-      {profileUpdate(name, email, password)}
+      {profileUpdate(name, email, password, phone)}
       {redirectUser(success)}
     </Layout>
   );
