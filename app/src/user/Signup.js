@@ -8,6 +8,7 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
+    passwordRepeat: "",
     phone: "",
     error: "",
     success: false
@@ -17,7 +18,15 @@ const Signup = () => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const { name, email, password, success, phone, error } = values;
+  const {
+    name,
+    email,
+    password,
+    passwordRepeat,
+    success,
+    phone,
+    error
+  } = values;
 
   const clickSubmit = event => {
     event.preventDefault(); //so that browser is not reloaded when the button is clicked.
@@ -31,6 +40,7 @@ const Signup = () => {
           name: "",
           email: "",
           password: "",
+          passwordRepeat: "",
           phone: "",
           error: "",
           success: true
@@ -38,6 +48,10 @@ const Signup = () => {
       }
     });
   };
+
+  const passwordsDontMatch = () => (
+    <div className="alert alert-info">Passwords don't match</div>
+  );
 
   const singUpForm = () => (
     <form>
@@ -62,15 +76,6 @@ const Signup = () => {
       </div>
 
       <div className="form-group">
-        <label className="text-muted">Password</label>
-        <input
-          onChange={handleChange("password")}
-          type="password"
-          className="form-control"
-          value={password}
-        />
-      </div>
-      <div className="form-group">
         <label className="text-muted">Phone</label>
         <input
           onChange={handleChange("phone")}
@@ -79,6 +84,30 @@ const Signup = () => {
           value={phone}
         />
       </div>
+
+      <div className="form-group">
+        <label className="text-muted">Password</label>
+        <input
+          onChange={handleChange("password")}
+          type="password"
+          className="form-control"
+          value={password}
+        />
+      </div>
+
+      <div className="form-group">
+        <label className="text-muted">Repeat Password</label>
+        <input
+          onChange={handleChange("passwordRepeat")}
+          type="password"
+          className="form-control"
+          value={passwordRepeat}
+        />
+      </div>
+      {passwordRepeat !== "" && password !== passwordRepeat
+        ? passwordsDontMatch()
+        : ""}
+
       <button onClick={clickSubmit} className="btn btn-primary">
         Submit
       </button>
@@ -112,6 +141,7 @@ const Signup = () => {
       {showSuccess()}
       {showError()}
       {singUpForm()}
+      {/* {passwordsDontMatch()} */}
     </Layout>
   );
 };
