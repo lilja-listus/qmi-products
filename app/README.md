@@ -83,7 +83,7 @@ location /api {
 location /{
         proxy_pass http://localhost:3000;
         proxy_http_version 1.1;
-        proxy_set_header Upgrate $http_upgrade;
+        proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
@@ -92,3 +92,20 @@ location /{
 ```
 
 Don't forget to reboot the server `server reboot nginx`
+
+To populate the state in the init() function set values:
+
+````
+        setValues({
+          ...values,
+          name: data.name,
+          description: data.description,
+          price: data.price,
+          category: data.category._id,
+          shipping: data.shipping,
+          quantity: data.quantity,
+
+          formData: new FormData()
+        });
+        ```
+````
