@@ -5,6 +5,7 @@ import { getCategories, getFilteredProducts } from "./apiCore";
 import Checkbox from "./Checkbox";
 import RadioBox from "./RadioBox";
 import { prices } from "./fixedPrices";
+import { norwegian } from "../text";
 
 const Shop = () => {
   const [myFilters, setMyFilters] = useState({
@@ -17,7 +18,6 @@ const Shop = () => {
   const [size, setSize] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
 
-  //the method that loads the categories
   const init = () => {
     getCategories().then(data => {
       if (data.error) {
@@ -72,12 +72,11 @@ const Shop = () => {
 
   const handleFilters = (filters, filterBy) => {
     const newFilters = { ...myFilters };
-    newFilters.filters[filterBy] = filters; // to update the filters
+    newFilters.filters[filterBy] = filters;
 
     if (filterBy === "price") {
-      // extract value for array
       let priceValues = handlePrice(filters);
-      newFilters.filters[filterBy] = priceValues; // to update the filters
+      newFilters.filters[filterBy] = priceValues;
     }
     loadFilteredResults(myFilters.filters);
     setMyFilters(newFilters);
@@ -103,14 +102,14 @@ const Shop = () => {
     >
       <div className="row">
         <div className="col-4">
-          <h4>Filter by categories</h4>
+          <h4>{norwegian.filterByCategories}</h4>
           <ul>
             <Checkbox
               categories={categories}
               handleFilters={filters => handleFilters(filters, "category")}
             />
           </ul>
-          <h4>Filter by price range</h4>
+          <h4>{norwegian.filterByPrice}</h4>
           <div>
             <RadioBox
               prices={prices}
@@ -119,7 +118,7 @@ const Shop = () => {
           </div>
         </div>
         <div className="col-8">
-          <h2 className="mb-4">Products</h2>
+          <h2 className="mb-4">{norwegian.products}</h2>
           <div className="row">
             {filteredResults.map((product, i) => (
               <div key={i} className="col-4 mb-3">

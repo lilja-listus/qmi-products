@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth";
 import { itemTotal } from "./cartHelpers";
+import { norwegian } from "../text";
 
 const isActive = (history, path) => {
   if (history.location.pathname === path) {
@@ -16,7 +17,7 @@ const Menu = ({ history }) => (
     <ul className="nav nav-tabs bg-primary">
       <li className="nav-item">
         <Link className="nav-link" style={isActive(history, "/")} to="/">
-          Home
+          {norwegian.shop}
         </Link>
       </li>
 
@@ -26,7 +27,7 @@ const Menu = ({ history }) => (
           style={isActive(history, "/shop")}
           to="/shop"
         >
-          Shop
+          {norwegian.shop}
         </Link>
       </li>
 
@@ -36,7 +37,7 @@ const Menu = ({ history }) => (
           style={isActive(history, "/cart")}
           to="/cart"
         >
-          Cart{" "}
+          {norwegian.cart}
           <sup>
             <small className="cart-badge">{itemTotal()}</small>
           </sup>
@@ -50,7 +51,7 @@ const Menu = ({ history }) => (
             style={isActive(history, "/user/dashboard")}
             to="/user/dashboard"
           >
-            Dashboard
+            {norwegian.dashboard}
           </Link>
         </li>
       )}
@@ -62,7 +63,7 @@ const Menu = ({ history }) => (
             style={isActive(history, "/admin/dashboard")}
             to="/admin/dashboard"
           >
-            Dashboard
+            {norwegian.dashboard}
           </Link>
         </li>
       )}
@@ -76,7 +77,7 @@ const Menu = ({ history }) => (
               style={isActive(history, "/signin")}
               to="/signin"
             >
-              Signin
+              {norwegian.signIn}
             </Link>
           </li>
           <li className="nav-item">
@@ -85,7 +86,7 @@ const Menu = ({ history }) => (
               style={isActive(history, "/signup")}
               to="/signup"
             >
-              Signup
+              {norwegian.signup}
             </Link>
           </li>
         </Fragment>
@@ -102,7 +103,7 @@ const Menu = ({ history }) => (
                 })
               }
             >
-              Signout
+              {norwegian.singOut}
             </span>
           </li>
         </div>

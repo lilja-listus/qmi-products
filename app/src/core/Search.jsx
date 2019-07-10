@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getCategories, list } from "./apiCore";
 import Card from "./Card";
+import { norwegian } from "../text";
 
 const Search = () => {
   const [data, setData] = useState({
@@ -28,7 +29,6 @@ const Search = () => {
   }, []);
 
   const searchData = () => {
-    // console.log(search, category);
     if (search) {
       list({ search: search || undefined, category: category }).then(
         response => {
@@ -43,8 +43,8 @@ const Search = () => {
   };
 
   const searchSubmit = e => {
-    e.preventDefault(); // so that page is not reloading
-    //request to the backend to fetch the product
+    e.preventDefault();
+
     searchData();
   };
 
@@ -58,7 +58,7 @@ const Search = () => {
         <div className="input-group input-group-lg ">
           <div className="input-group-prepend">
             <select className="btn mr-2" onChange={handleChange("category")}>
-              <option value="All">All</option>
+              <option value="All">Alle</option>
               {categories.map((category, i) => (
                 <option key={i} value={category._id}>
                   {category.name}
@@ -74,7 +74,7 @@ const Search = () => {
           />
         </div>
         <div className="btn input-group-append" style={{ border: "none" }}>
-          <button className="input-group-text">Search</button>
+          <button className="input-group-text">{norwegian.search}</button>
         </div>
       </span>
     </form>

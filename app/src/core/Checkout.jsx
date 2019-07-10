@@ -5,7 +5,6 @@ import {
   processPayment,
   createOrder
 } from "./apiCore";
-import Card from "./Card";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
@@ -62,8 +61,6 @@ const Checkout = ({ products }) => {
 
   const buy = () => {
     setData({ loading: true });
-    //send the nonce to your server
-    // nonce = data.instance.requestPaymentMethod()
 
     let nonce;
 
@@ -89,7 +86,6 @@ const Checkout = ({ products }) => {
             };
 
             createOrder(userId, token, createOrderData).then(response => {
-              console.log("the data for order", createOrderData);
               emptyCart(() => {
                 console.log("payment success");
 
@@ -110,7 +106,6 @@ const Checkout = ({ products }) => {
       })
 
       .catch(error => {
-        // console.log("dropin error: ", error);
         setData({ ...data, error: error.message });
       });
   };

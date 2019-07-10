@@ -20,7 +20,7 @@ const AddCategory = () => {
     e.preventDefault();
     setError("");
     setSuccess(false);
-    //make request to api to create category
+
     createCategory(user._id, token, { name }).then(data => {
       if (data.error) {
         setError(true);

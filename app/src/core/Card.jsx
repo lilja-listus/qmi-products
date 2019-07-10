@@ -19,7 +19,7 @@ const Card = ({
       showViewProductButton && (
         <Link to={`/product/${product._id}`} className="mr-2">
           <button className="btn btn-outline-primary mr-2 mb-2">
-            View Product
+            {norwegian.viewProduct}
           </button>
         </Link>
       )

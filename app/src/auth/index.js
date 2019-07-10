@@ -35,18 +35,16 @@ export const signin = user => {
 };
 
 export const authenticate = (data, next) => {
-  //local storage is a property of the window object
   if (typeof window !== "undefined") {
-    localStorage.setItem("jwt", JSON.stringify(data)); // jwt is the key, second argument is the data we save under that key
+    localStorage.setItem("jwt", JSON.stringify(data));
     next();
   }
 };
 
 export const signout = next => {
   if (typeof window !== "undefined") {
-    localStorage.removeItem("jwt"); // we remove jwt if it exists
+    localStorage.removeItem("jwt");
     next();
-    //after that we sign out
     return fetch(`${API}/signout`, {
       method: "GET"
     })
@@ -56,17 +54,14 @@ export const signout = next => {
       .catch(err => console.log(err));
   }
 };
-/**
- *
- * The method we use to check whether the user is signed in or out to conditionally sign in and sign out links
- *  */
 
 export const isAuthenticated = () => {
   if (typeof window == "undefined") {
     return false;
   }
+
   if (localStorage.getItem("jwt")) {
-    return JSON.parse(localStorage.getItem("jwt")); //to make sure it is in JSON format we use parse
+    return JSON.parse(localStorage.getItem("jwt"));
   } else {
     return false;
   }

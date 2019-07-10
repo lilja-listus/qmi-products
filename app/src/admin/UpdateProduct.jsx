@@ -1,4 +1,3 @@
-//tslint:disable
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
@@ -42,7 +41,6 @@ const UpdateProduct = ({ match }) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
-        // populate the state
         setValues({
           ...values,
           name: data.name,
@@ -58,6 +56,7 @@ const UpdateProduct = ({ match }) => {
       }
     });
   };
+
   const initCategories = () => {
     getCategories().then(data => {
       if (data.error) {

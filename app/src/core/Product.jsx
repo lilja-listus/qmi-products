@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
 import { read, listRelated } from "./apiCore";
 import Card from "./Card";
+import { norwegian } from "../text";
 
 const Product = props => {
   const [relatedProduct, setRelatedProduct] = useState([]);
@@ -14,7 +15,6 @@ const Product = props => {
         setError(data.error);
       } else {
         setProduct(data);
-        //fetch related products
 
         listRelated(data._id).then(data => {
           if (data.error) {
@@ -42,13 +42,12 @@ const Product = props => {
     >
       <div className="row">
         <div className="col-8">
-          {" "}
           {product && product.description && (
             <Card product={product} showViewProductButton={false} />
           )}
         </div>
         <div className="col-4">
-          <h4>Related Products</h4>
+          <h4>{norwegian.relatedProducts}</h4>
           {relatedProduct.map((p, i) => (
             <div className="mb-3">
               <Card key={i} product={p} />

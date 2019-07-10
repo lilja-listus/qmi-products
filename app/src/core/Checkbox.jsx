@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const Checkbox = ({ categories, handleFilters }) => {
   const [checked, setChecked] = useState([]);
 
   const handleToggle = c => () => {
-    const currentCategoryId = checked.indexOf(c); // return the first index or -1
-    const newCheckedCategoryId = [...checked]; // will return everything that is in the state
-    //if currently checked was not in checked state > push
-    //else pull/take off
+    const currentCategoryId = checked.indexOf(c);
+    const newCheckedCategoryId = [...checked];
+
     if (currentCategoryId === -1) {
       newCheckedCategoryId.push(c);
     } else {
@@ -17,10 +16,7 @@ const Checkbox = ({ categories, handleFilters }) => {
     handleFilters(newCheckedCategoryId);
   };
 
-  return categories.map((
-    c,
-    i //key={i}  - so that each of them have unique index
-  ) => (
+  return categories.map((c, i) => (
     <li key={i} className="list-unstyled">
       <input
         onChange={handleToggle(c._id)}
