@@ -3,6 +3,7 @@ import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
 import { read, update, updateUser } from "./apiUser";
+import { norwegian } from "../text";
 
 const Profile = ({ match }) => {
   const [values, setValues] = useState({
@@ -71,7 +72,7 @@ const Profile = ({ match }) => {
   const profileUpdate = (name, email, password, phone) => (
     <form>
       <div className="form-group">
-        <label className="text-muted">Name</label>
+        <label className="text-muted">{norwegian.name}</label>
         <input
           type="text"
           onChange={handleChange("name")}
@@ -80,7 +81,7 @@ const Profile = ({ match }) => {
         />
       </div>
       <div className="form-group">
-        <label className="text-muted">Email</label>
+        <label className="text-muted">{norwegian.email}</label>
         <input
           type="email"
           onChange={handleChange("email")}
@@ -89,7 +90,7 @@ const Profile = ({ match }) => {
         />
       </div>
       <div className="form-group">
-        <label className="text-muted">password</label>
+        <label className="text-muted">{norwegian.password}</label>
         <input
           type="password"
           onChange={handleChange("password")}
@@ -99,7 +100,7 @@ const Profile = ({ match }) => {
       </div>
 
       <div className="form-group">
-        <label className="text-muted">phone</label>
+        <label className="text-muted">{norwegian.phone}</label>
         <input
           type="phone"
           onChange={handleChange("phone")}
@@ -108,7 +109,7 @@ const Profile = ({ match }) => {
         />
       </div>
       <button onClick={clickSubmit} className="btn btn-primary">
-        Submit
+        {norwegian.submit}
       </button>
     </form>
   );
@@ -120,7 +121,7 @@ const Profile = ({ match }) => {
       className="container-fluid"
     >
       {" "}
-      <h2 className="mb-4">Profile update</h2>
+      <h2 className="mb-4">{norwegian.profileUpdate}</h2>
       {profileUpdate(name, email, password, phone)}
       {redirectUser(success)}
     </Layout>

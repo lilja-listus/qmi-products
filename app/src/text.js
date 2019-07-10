@@ -24,5 +24,16 @@ export const norwegian = {
   search: "Søke",
   filterByCategories: "Filtrer etter kategorier",
   filterByPrice: "Filtrer etter prisklasse",
-  products: "Produkter"
+  products: "Produkter",
+  name: "Navn",
+  email: "e-post",
+  password: "Passord",
+  phone: "Telefon",
+  submit: "Sende inn",
+  profileUpdate: "Profiloppdatering",
+  repeatPassword: "Gjenta passord",
+  userInformation: "Brukerinformasjon",
+  productName: "Produktnavn: ",
+  productPrice: "Produktpris: ",
+  purchasedDate: "Kjøpt dato: "
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../core/Layout";
 import { signup } from "../auth";
+import { norwegian } from "../text";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -29,7 +30,7 @@ const Signup = () => {
   } = values;
 
   const clickSubmit = event => {
-    event.preventDefault(); //so that browser is not reloaded when the button is clicked.
+    event.preventDefault();
     setValues({ ...values, error: false });
     signup({ name, email, password, phone }).then(data => {
       if (data.error) {
@@ -56,7 +57,7 @@ const Signup = () => {
   const singUpForm = () => (
     <form>
       <div className="form-group">
-        <label className="text-muted">Name</label>
+        <label className="text-muted">{norwegian.name}</label>
         <input
           onChange={handleChange("name")}
           type="text"
@@ -66,7 +67,7 @@ const Signup = () => {
       </div>
 
       <div className="form-group">
-        <label className="text-muted">Email</label>
+        <label className="text-muted">{norwegian.email}</label>
         <input
           onChange={handleChange("email")}
           type="email"
@@ -76,7 +77,7 @@ const Signup = () => {
       </div>
 
       <div className="form-group">
-        <label className="text-muted">Phone</label>
+        <label className="text-muted">{norwegian.phone}</label>
         <input
           onChange={handleChange("phone")}
           type="phone"
@@ -86,7 +87,7 @@ const Signup = () => {
       </div>
 
       <div className="form-group">
-        <label className="text-muted">Password</label>
+        <label className="text-muted">{norwegian.password}</label>
         <input
           onChange={handleChange("password")}
           type="password"
@@ -96,7 +97,7 @@ const Signup = () => {
       </div>
 
       <div className="form-group">
-        <label className="text-muted">Repeat Password</label>
+        <label className="text-muted">{norwegian.repeatPassword}</label>
         <input
           onChange={handleChange("passwordRepeat")}
           type="password"
@@ -141,7 +142,6 @@ const Signup = () => {
       {showSuccess()}
       {showError()}
       {singUpForm()}
-      {/* {passwordsDontMatch()} */}
     </Layout>
   );
 };

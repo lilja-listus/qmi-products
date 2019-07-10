@@ -4,6 +4,7 @@ import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { getPurchaseHistory } from "./apiUser";
 import moment from "moment";
+import { norwegian } from "../text";
 
 const Dashboard = () => {
   const [history, setHistory] = useState([]);
@@ -35,12 +36,12 @@ const Dashboard = () => {
         <ul className="list-group">
           <li className="list-group-item">
             <Link className="nav-link" to="/cart">
-              My Cart
+              {norwegian.cart}
             </Link>
           </li>
           <li className="list-group-item">
             <Link className="nav-link" to={`/profile/${_id}`}>
-              Update Profile
+              {norwegian.profileUpdate}
             </Link>
           </li>
         </ul>
@@ -51,7 +52,7 @@ const Dashboard = () => {
   const userInfo = () => {
     return (
       <div className="card mb-5">
-        <h3 className="card-header">User Information</h3>
+        <h3 className="card-header">{norwegian.userInformation}</h3>
         <ul className="list-group">
           <li className="list-group-item">{name}</li>
           <li className="list-group-item">{email}</li>
@@ -76,9 +77,17 @@ const Dashboard = () => {
                   {h.products.map((p, i) => {
                     return (
                       <div key={i}>
-                        <h6>Product name: {p.name}</h6>
-                        <h6>Product price: {p.price} NOK</h6>
-                        <h6>Purchased date: {moment(p.createdAt).fromNow()}</h6>
+                        <h6>
+                          {norwegian.productName}: {p.name}
+                        </h6>
+                        <h6>
+                          {norwegian.productPrice}
+                          {p.price} NOK
+                        </h6>
+                        <h6>
+                          {norwegian.purchasedDate}
+                          {moment(p.createdAt).fromNow()}
+                        </h6>
                       </div>
                     );
                   })}

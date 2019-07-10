@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
 import { signin, authenticate, isAuthenticated } from "../auth";
+import { norwegian } from "../text";
 
 const Signin = () => {
   const [values, setValues] = useState({
@@ -49,7 +50,7 @@ const Signin = () => {
       </div>
 
       <div className="form-group">
-        <label className="text-muted">Password</label>
+        <label className="text-muted">{norwegian.password}</label>
         <input
           onChange={handleChange("password")}
           type="password"
@@ -58,7 +59,7 @@ const Signin = () => {
         />
       </div>
       <button onClick={clickSubmit} className="btn btn-primary">
-        Submit
+        {norwegian.submit}
       </button>
     </form>
   );

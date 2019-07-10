@@ -12,7 +12,7 @@ const Search = () => {
     searched: false
   });
 
-  const { categories, category, search, results, searched } = data;
+  const { categories, category, search, results, searched, error } = data;
 
   const loadCategories = () => {
     getCategories().then(data => {

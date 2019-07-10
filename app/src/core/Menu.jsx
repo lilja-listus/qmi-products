@@ -17,7 +17,7 @@ const Menu = ({ history }) => (
     <ul className="nav nav-tabs bg-primary">
       <li className="nav-item">
         <Link className="nav-link" style={isActive(history, "/")} to="/">
-          {norwegian.shop}
+          {norwegian.home}
         </Link>
       </li>
 
