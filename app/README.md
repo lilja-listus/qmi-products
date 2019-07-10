@@ -64,35 +64,6 @@ Use braintree for payments.
 Package `compression`
 react app is served from Build directory
 
-Configure nginx server:
-
-add in /etc/nginx/conf.d default.conf
-
-```
-server{
-
-location /api {
-        proxy_pass http://localhost:8000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade
-        }
-
-location /{
-        proxy_pass http://localhost:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-}
-}
-```
-
-Don't forget to reboot the server `server reboot nginx`
-
 To populate the state in the init() function set values:
 
 ````
@@ -109,3 +80,116 @@ To populate the state in the init() function set values:
         });
         ```
 ````
+
+//make request to api to create category
+
+```
+createCategory(user.\_id, token, { name }).then(data => {
+if (data.error) {
+setError(true);
+} else {
+setError("");
+setSuccess(true);
+}
+```
+
+`//tslint:disable`
+
+```
+//function that connects to backend
+export const createCategory = (userId, token, category) => {
+  return fetch(`${API}/category/create/${userId}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(category)
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+```
+
+// populate the state
+setValues({
+...values,
+name: data.name,
+description: data.description,
+price: data.price,
+category: data.category.\_id,
+shipping: data.shipping,
+quantity: data.quantity,
+
+          formData: new FormData()
+        });
+
+//local storage is a property of the window object
+if (typeof window !== "undefined") {
+localStorage.setItem("jwt", JSON.stringify(data)); // jwt is the key, second argument is the data we save under that key
+next();
+}
+
+//
+
+localStorage.removeItem("jwt"); // we remove jwt if it exists
+
+//
+
+if (localStorage.getItem("jwt")) {
+return JSON.parse(localStorage.getItem("jwt")); //to make sure it is in JSON format we use parse
+} else {
+return false;
+}
+
+//
+const handleToggle = c => () => {
+const currentCategoryId = checked.indexOf(c); // return the first index or -1
+const newCheckedCategoryId = [...checked]; // will return everything that is in the state
+//if currently checked was not in checked state > push
+//else pull/take off
+if (currentCategoryId === -1) {
+newCheckedCategoryId.push(c);
+} else {
+newCheckedCategoryId.splice(currentCategoryId, 1);
+}
+
+//
+return categories.map((
+c,
+i //key={i} - so that each of them have unique index
+)
+
+///
+const buy = () => {
+setData({ loading: true });
+//send the nonce to your server
+// nonce = data.instance.requestPaymentMethod()
+
+    let nonce;
+
+    let getNonce = data.instance
+
+//
+const searchSubmit = e => {
+e.preventDefault(); // so that page is not reloading
+//request to the backend to fetch the product
+searchData();
+};
+
+///
+//the method that loads the categories
+const init = () => {
+getCategories().then(data => {
+if (data.error) {
+setError(data.error);
+} else {
+setCategories(data);
+}
+});
+};
