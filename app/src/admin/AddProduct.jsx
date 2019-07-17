@@ -15,7 +15,7 @@ const AddProduct = () => {
     photo: "",
     loading: false,
     error: "",
-    createProduct: "",
+    createdProduct: "",
     redirectToProfile: false,
     formData: ""
   });

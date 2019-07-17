@@ -15,8 +15,8 @@ const UpdateProduct = ({ match }) => {
     quantity: "",
     photo: "",
     loading: false,
-    error: "",
-    updateProduct: "",
+    error: false,
+    createdProduct: "",
     redirectToProfile: false,
     formData: ""
   });
@@ -28,10 +28,12 @@ const UpdateProduct = ({ match }) => {
     description,
     price,
     categories,
+    category,
+    shipping,
     quantity,
     loading,
     error,
-    updatedProduct,
+    createdProduct,
     redirectToProfile,
     formData
   } = values;
@@ -93,6 +95,7 @@ const UpdateProduct = ({ match }) => {
             price: "",
             quantity: "",
             loading: false,
+            error: false,
             redirectToProfile: true,
             updatedProduct: data.name
           });
@@ -191,9 +194,9 @@ const UpdateProduct = ({ match }) => {
   const showSuccess = () => (
     <div
       className="alert alert-info"
-      style={{ display: updatedProduct ? "" : "none" }}
+      style={{ display: createdProduct ? "" : "none" }}
     >
-      <h2>{`${updatedProduct}`} is updated</h2>
+      <h2>{`${createdProduct}`} is updated</h2>
     </div>
   );
 
