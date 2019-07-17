@@ -21,25 +21,32 @@ const AddProduct = () => {
   });
 
   const { user, token } = isAuthenticated();
-
   const {
     name,
     description,
     price,
     categories,
+    category,
+    shipping,
     quantity,
     loading,
     error,
     createdProduct,
+    redirectToProfile,
     formData
   } = values;
 
+  // load categories and set form data
   const init = () => {
     getCategories().then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
-        setValues({ ...values, categories: data, formData: new FormData() });
+        setValues({
+          ...values,
+          categories: data,
+          formData: new FormData()
+        });
       }
     });
   };
@@ -133,6 +140,15 @@ const AddProduct = () => {
       </div>
 
       <div className="form-group">
+        <label className="text-muted">Shipping</label>
+        <select onChange={handleChange("shipping")} className="form-control">
+          <option>Please select</option>
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+
+      <div className="form-group">
         <label className="text-muted">Quantity</label>
         <input
           onChange={handleChange("quantity")}
@@ -142,14 +158,6 @@ const AddProduct = () => {
         />
       </div>
 
-      <div className="form-group">
-        <label className="text-muted">Shipping</label>
-        <select onChange={handleChange("shipping")} className="form-control">
-          <option>Please select</option>
-          <option value="0">No</option>
-          <option value="1">Yes</option>
-        </select>
-      </div>
       <button className="btn btn-outline-primary">Create Product</button>
     </form>
   );
@@ -168,21 +176,21 @@ const AddProduct = () => {
       className="alert alert-info"
       style={{ display: createdProduct ? "" : "none" }}
     >
-      <h2>{`${createdProduct}`} is created</h2>
+      <h2>{`${createdProduct}`} is created!</h2>
     </div>
   );
 
   const showLoading = () =>
     loading && (
       <div className="alert alert-success">
-        <h2>Loading ... </h2>
+        <h2>Loading...</h2>
       </div>
     );
 
   return (
     <Layout
       title="Add a new product"
-      description={`Good day ${user.name}, ready to add a new product?`}
+      description={`G'day ${user.name}, ready to add a new product?`}
     >
       <div className="row">
         <div className="col-md-8 offset-md-2">
