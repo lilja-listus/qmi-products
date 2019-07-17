@@ -21,7 +21,11 @@ const app = express();
 
 //db
 mongoose
-  .connect("mongod://127.0.0.1:27017/qmi", { useNewUrlParser: true })
+
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
   .then(() => {
     console.log("DB Connected");
   })
