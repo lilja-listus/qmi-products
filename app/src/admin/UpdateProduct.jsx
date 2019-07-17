@@ -15,8 +15,8 @@ const UpdateProduct = ({ match }) => {
     quantity: "",
     photo: "",
     loading: false,
-    error: false,
-    createProduct: "",
+    error: "",
+    updateProduct: "",
     redirectToProfile: false,
     formData: ""
   });
@@ -28,8 +28,6 @@ const UpdateProduct = ({ match }) => {
     description,
     price,
     categories,
-    category,
-    shipping,
     quantity,
     loading,
     error,
