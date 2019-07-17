@@ -3,6 +3,9 @@ import { Link, Redirect } from "react-router-dom";
 import ShowImage from "./ShowImage";
 import { addItem, updateItem, removeItem } from "./cartHelpers";
 import { norwegian } from "../text";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 
 const Card = ({
   product,
@@ -18,9 +21,9 @@ const Card = ({
     return (
       showViewProductButton && (
         <Link to={`/product/${product._id}`} className="mr-2">
-          <button className="btn btn-outline-primary mr-2 mb-2">
+          <Button variant="contained" className="default">
             {norwegian.viewProduct}
-          </button>
+          </Button>
         </Link>
       )
     );
@@ -41,12 +44,15 @@ const Card = ({
   const showAddToCart = showAddToCartButton => {
     return (
       showAddToCartButton && (
-        <button
+        <Button
+          variant="contained"
+          color="primary"
+          className="primary"
           onClick={addToCart}
-          className="btn btn-outline-warning mt-2 mb-2"
+          // className="btn btn-outline-warning see-product"
         >
           {norwegian.addToCart}
-        </button>
+        </Button>
       )
     );
   };
@@ -54,12 +60,14 @@ const Card = ({
   const showRemoveButton = showRemoveProductButton => {
     return (
       showRemoveProductButton && (
-        <button
+        <Button
+          variant="contained"
+          color="secondary"
+          className="secondary"
           onClick={() => removeItem(product._id)}
-          className="btn btn-outline-danger mt-2 mb-2"
         >
           {norwegian.removeProduct}
-        </button>
+        </Button>
       )
     );
   };
@@ -112,19 +120,24 @@ const Card = ({
         {shouldRedirect(redirect)}
         <ShowImage item={product} url="product" />
         <p className="lead mt-2">{product.description.substring(0, 100)}</p>
-        <p className="black-10"> {product.price} NOK</p>
-        <p className="black-9">
-          Category: {product.category && product.category.name}
-        </p>
+        <Grid item xs={3}>
+          <Paper className="grid">{product.price} NOK</Paper>
+        </Grid>
+
+        <Grid item xs={3}>
+          <Paper className="grid">
+            Category: {product.category && product.category.name}
+          </Paper>
+        </Grid>
 
         {showStock(product.quantity)}
         <br />
+        <div className="buttons">
+          {showViewButton(showViewProductButton)}
 
-        {showViewButton(showViewProductButton)}
-
-        {showAddToCart(showAddToCartButton)}
-
-        {showRemoveButton(showRemoveProductButton)}
+          {showAddToCart(showAddToCartButton)}
+          {showRemoveButton(showRemoveProductButton)}
+        </div>
 
         {showCartUpdateOptions(cartUpdate)}
       </div>
