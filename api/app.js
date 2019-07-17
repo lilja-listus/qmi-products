@@ -27,6 +27,9 @@ mongoose
   })
   .then(() => {
     console.log("DB Connected");
+  })
+  .catch(error => {
+    throw error; //will get to pm2 log.
   });
 
 //middlewares
