@@ -30,6 +30,7 @@ mongoose
     console.log("DB Connected");
   })
   .catch(error => {
+    console.log("No DB");
     throw error; //will get to pm2 log.
   });
 

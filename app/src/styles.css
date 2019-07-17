@@ -13,9 +13,8 @@
   font-style: italic;
   background: #000;
 }
-
-.product-img {
-  min-height: 100px;
+img {
+  height: 200px;
 }
 
 .jumbotron h2 {
@@ -55,14 +54,35 @@
   }
 }
 
+.badge {
+  margin: 20px 0;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 30px;
+}
+
+.grid {
+  color: green;
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+/* .card-box {
+  height: 800px;
+  width: 400px;
+  margin-left: 40px;
+} */
+
 .jumbotron {
   width: 30wh;
   height: 30vh;
-  /* color: #fff; */
-  /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
+
   background-size: 400% 400%;
-  -webkit-animation: Gradient 15s ease infinite;
-  -moz-animation: Gradient 15s ease infinite;
 }
 
 @-webkit-keyframes Gradient {
