@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { getProduct, getCategories, updateProduct } from "./apiAdmin";
 
 const UpdateProduct = ({ match }) => {
@@ -15,24 +15,23 @@ const UpdateProduct = ({ match }) => {
     quantity: "",
     photo: "",
     loading: false,
-    error: false,
-    createdProduct: "",
+    error: "",
+    updateProduct: "",
     redirectToProfile: false,
     formData: ""
   });
 
   const { user, token } = isAuthenticated();
+
   const {
     name,
     description,
     price,
     categories,
-    category,
-    shipping,
     quantity,
     loading,
     error,
-    createdProduct,
+    updatedProduct,
     redirectToProfile,
     formData
   } = values;
@@ -42,7 +41,6 @@ const UpdateProduct = ({ match }) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
-        // populate the state
         setValues({
           ...values,
           name: data.name,
@@ -53,22 +51,17 @@ const UpdateProduct = ({ match }) => {
           quantity: data.quantity,
           formData: new FormData()
         });
-        // load categories
         initCategories();
       }
     });
   };
 
-  // load categories and set form data
   const initCategories = () => {
     getCategories().then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
-        setValues({
-          categories: data,
-          formData: new FormData()
-        });
+        setValues({ categories: data, formData: new FormData() });
       }
     });
   };
@@ -100,9 +93,8 @@ const UpdateProduct = ({ match }) => {
             price: "",
             quantity: "",
             loading: false,
-            error: false,
             redirectToProfile: true,
-            createdProduct: data.name
+            updatedProduct: data.name
           });
         }
       }
@@ -166,15 +158,6 @@ const UpdateProduct = ({ match }) => {
       </div>
 
       <div className="form-group">
-        <label className="text-muted">Shipping</label>
-        <select onChange={handleChange("shipping")} className="form-control">
-          <option>Please select</option>
-          <option value="0">No</option>
-          <option value="1">Yes</option>
-        </select>
-      </div>
-
-      <div className="form-group">
         <label className="text-muted">Quantity</label>
         <input
           onChange={handleChange("quantity")}
@@ -184,6 +167,14 @@ const UpdateProduct = ({ match }) => {
         />
       </div>
 
+      <div className="form-group">
+        <label className="text-muted">Shipping</label>
+        <select onChange={handleChange("shipping")} className="form-control">
+          <option>Please select</option>
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
       <button className="btn btn-outline-primary">Update Product</button>
     </form>
   );
@@ -200,18 +191,11 @@ const UpdateProduct = ({ match }) => {
   const showSuccess = () => (
     <div
       className="alert alert-info"
-      style={{ display: createdProduct ? "" : "none" }}
+      style={{ display: updatedProduct ? "" : "none" }}
     >
-      <h2>{`${createdProduct}`} is updated!</h2>
+      <h2>{`${updatedProduct}`} is updated</h2>
     </div>
   );
-
-  const showLoading = () =>
-    loading && (
-      <div className="alert alert-success">
-        <h2>Loading...</h2>
-      </div>
-    );
 
   const redirectUser = () => {
     if (redirectToProfile) {
@@ -221,10 +205,17 @@ const UpdateProduct = ({ match }) => {
     }
   };
 
+  const showLoading = () =>
+    loading && (
+      <div className="alert alert-success">
+        <h2>Loading ... </h2>
+      </div>
+    );
+
   return (
     <Layout
       title="Add a new product"
-      description={`Hello ${user.name}, ready to add a new product?`}
+      description={`Good day ${user.name}, ready to add a new product?`}
     >
       <div className="row">
         <div className="col-md-8 offset-md-2">
