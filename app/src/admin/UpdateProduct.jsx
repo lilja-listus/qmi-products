@@ -28,8 +28,6 @@ const UpdateProduct = ({ match }) => {
     description,
     price,
     categories,
-    category,
-    shipping,
     quantity,
     loading,
     error,

@@ -49,7 +49,6 @@ const Card = ({
           color="primary"
           className="primary"
           onClick={addToCart}
-          // className="btn btn-outline-warning see-product"
         >
           {norwegian.addToCart}
         </Button>
@@ -119,7 +118,9 @@ const Card = ({
       <div className="card-body">
         {shouldRedirect(redirect)}
         <ShowImage item={product} url="product" />
-        <p className="lead mt-2">{product.description.substring(0, 100)}</p>
+        <div className="text-box">
+          <p>{product.description.substring(0, 100)}...</p>
+        </div>
         <Grid item xs={3}>
           <Paper className="grid">{product.price} NOK</Paper>
         </Grid>

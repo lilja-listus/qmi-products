@@ -97,13 +97,11 @@ const Orders = () => {
                 style={{ borderBottom: "5px solid indigo" }}
               >
                 <h2 className="mb-5">
-                  {" "}
                   <span className="bg-primary">Order Id: {o._id}</span>
                 </h2>
                 <ul className="list-group mb-2">
                   <li className="list-group-item">{showStatus(o)}</li>
                   <li className="list-group-item">
-                    {" "}
                     Transaction ID: {o.transaction_id}
                   </li>
                   <li className="list-group-item">Amount: {o.amount}</li>
