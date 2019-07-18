@@ -4,7 +4,7 @@
   border-radius: 0px;
 }
 
-/*cart badge*/
+/* cart badge
 .cart-badge,
 .cart-badge:hover {
   border-radius: 50%;
@@ -12,13 +12,29 @@
   font-size: 12px;
   font-style: italic;
   background: #000;
-}
+} */
 img {
   height: 200px;
 }
 
+.card {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
 .jumbotron h2 {
   margin-top: -20px;
+}
+.row {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+}
+
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .name {
@@ -72,11 +88,15 @@ img {
   width: 300px;
 }
 
-/* .card-box {
-  height: 800px;
-  width: 400px;
-  margin-left: 40px;
-} */
+.card-body {
+  height: 600px;
+  width: 100%;
+}
+
+.text-box {
+  margin: 10px;
+  margin-bottom: 40px;
+}
 
 .jumbotron {
   width: 30wh;
