@@ -4,15 +4,6 @@
   border-radius: 0px;
 }
 
-/* cart badge
-.cart-badge,
-.cart-badge:hover {
-  border-radius: 50%;
-  padding: 2px;
-  font-size: 12px;
-  font-style: italic;
-  background: #000;
-} */
 img {
   height: 200px;
 }
@@ -25,10 +16,33 @@ img {
 .jumbotron h2 {
   margin-top: -20px;
 }
+
+.shop-body {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.shop-card {
+  width: 50%;
+}
+
 .row {
   width: 80%;
   margin: 0 auto;
   display: block;
+}
+
+.left-side {
+  width: 30%;
+}
+
+.right-side {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .products {

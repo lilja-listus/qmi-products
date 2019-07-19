@@ -100,8 +100,8 @@ const Shop = () => {
       description="Search and find stuff of your choice"
       className="container-fluid"
     >
-      <div className="row">
-        <div className="col-4">
+      <div className="shop-body">
+        <div className="left-side">
           <h4>{norwegian.filterByCategories}</h4>
           <ul>
             <Checkbox
@@ -119,9 +119,10 @@ const Shop = () => {
         </div>
         <div className="col-8">
           <h2 className="mb-4">{norwegian.products}</h2>
-          <div className="row">
+
+          <div className="right-side">
             {filteredResults.map((product, i) => (
-              <div key={i}>
+              <div className="shop-card" key={i}>
                 <Card product={product} />
               </div>
             ))}
