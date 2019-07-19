@@ -28,6 +28,10 @@ img {
   width: 50%;
 }
 
+.right-side-dashboard {
+  width: 60%;
+  margin-left: 20px;
+}
 .row {
   width: 80%;
   margin: 0 auto;
@@ -45,7 +49,18 @@ img {
   flex-direction: row;
 }
 
+.right-side-shop {
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.shop-card-cart {
+  width: 50%;
+}
 .products {
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

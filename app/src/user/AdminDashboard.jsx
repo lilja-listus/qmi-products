@@ -60,9 +60,9 @@ const AdminDashboard = () => {
       description={`Good day ${name}!`}
       className="container"
     >
-      <div className="row">
-        <div className="col-3"> {adminLinks()} </div>
-        <div className="col-9">{adminInfo()}</div>
+      <div className="shop-body">
+        <div className="left-side"> {adminLinks()} </div>
+        <div className="right-side-dashboard">{adminInfo()}</div>
       </div>
     </Layout>
   );

@@ -117,20 +117,20 @@ const Shop = () => {
             />
           </div>
         </div>
-        <div className="col-8">
-          <h2 className="mb-4">{norwegian.products}</h2>
 
-          <div className="right-side">
+        <div className="right-side-shop">
+          <h2>{norwegian.products}</h2>
+
+          <div className="products">
             {filteredResults.map((product, i) => (
-              <div className="shop-card" key={i}>
+              <div key={i}>
                 <Card product={product} />
               </div>
             ))}
           </div>
-          <hr />
-          {loadMoreButton()}
         </div>
       </div>
+      <div>{loadMoreButton()}</div>
     </Layout>
   );
 };
