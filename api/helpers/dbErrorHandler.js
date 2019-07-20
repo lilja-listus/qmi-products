@@ -1,5 +1,3 @@
-// Unique error
-
 const uniqueMessage = error => {
   let output;
   try {

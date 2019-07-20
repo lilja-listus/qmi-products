@@ -9,7 +9,7 @@ exports.userById = (req, res, next, id) => {
       });
     }
     req.profile = user;
-    next(); //it is a middleware that is why we need to use it
+    next();
   });
 };
 

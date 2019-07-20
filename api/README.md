@@ -35,3 +35,72 @@ Only admin can create new category and he can access data of other users.
 The routes are protected by middleware that checks whether the user is signed in, authorized and whether is admin for specific routes.
 
 braintree for payments.
+
+//generate a signed token with user id and secret
+const token = jwt.sign({ \_id: user.\_id }, process.env.JWT_SECRET);
+
+    //return response with user and token to frontend client
+    const { _id, name, email, role } = user;
+    return res.json({ token, user: { _id, email, name, role } });
+
+//charge
+let newTransation = gateway.transaction.sale(
+{
+amount: amountFromTheClient,
+paymentMethodNonce: nonceFromTheClient,
+options: {
+submitForSettlement: true
+}
+},
+(error, result) => {
+if (error) {
+res.status(500).json(error);
+} else {
+res.json(result);
+}
+}
+);
+
+exports.getStatusValues = (req, res) => {
+res.json(Order.schema.path("status").enumValues); // will be able to send enum values to the front
+};
+
+Product.find()
+.select("-photo") // we want to deselect it for this find
+.populate("category")
+.sort([[sortBy, order]]) //how we want to sort the data
+.limit(limit)
+.exec((err, products) => {
+if (err) {
+return res.status(400).json({
+error: "Products not found"
+});
+}
+res.json(products);
+});
+
+exports.listSearch = (req, res) => {
+//create query object to search value and category value
+const query = {};
+
+//asgign search value to query.name
+
+if (req.query.search) {
+query.name = { $regex: req.query.search, $options: "i" };
+//assigb categort value to query category
+if (req.query.category && req.query.category != "All") {
+query.category = req.query.category;
+}
+//find the product based on query object
+
+    Product.find(query, (err, products) => {
+      if (err) {
+        return res.status(400).json({
+          error: errorHandler(err)
+        });
+      }
+      res.json(products);
+    }).select("-photo");
+
+}
+};

@@ -14,7 +14,7 @@ exports.productById = (req, res, next, id) => {
         });
       }
       req.product = product;
-      next(); //because it is middleware
+      next();
     });
 };
 exports.read = (req, res) => {
@@ -35,7 +35,6 @@ exports.create = (req, res) => {
       });
     }
 
-    //check for all fields
     const { name, description, price, category, quantity, shipping } = fields;
 
     if (
@@ -55,7 +54,6 @@ exports.create = (req, res) => {
 
     if (files.photo) {
       if (files.photo.size > 1000000) {
-        //check that pic is not bigger than 1 mb
         return res.status(400).json({
           error: "Image should be less than 1mb "
         });
@@ -102,11 +100,10 @@ exports.update = (req, res) => {
     }
 
     let product = req.product;
-    product = _.extend(product, fields); // product and updated fields
+    product = _.extend(product, fields);
 
     if (files.photo) {
       if (files.photo.size > 1000000) {
-        //check that pic is not bigger than 1 mb
         return res.status(400).json({
           error: "Image should be less than 1mb "
         });
@@ -132,9 +129,9 @@ exports.list = (req, res) => {
   let limit = req.query.limit ? parseInt(req.query.limit) : 6;
 
   Product.find()
-    .select("-photo") // we want to deselect it for this find
+    .select("-photo")
     .populate("category")
-    .sort([[sortBy, order]]) //how we want to sort the data
+    .sort([[sortBy, order]])
     .limit(limit)
     .exec((err, products) => {
       if (err) {
@@ -150,7 +147,7 @@ exports.listRelated = (req, res) => {
   let limit = req.query.limit ? parseInt(req.query.limit) : 6;
 
   Product.find({
-    _id: { $ne: req.product }, // find all the products except this one $ne - not included
+    _id: { $ne: req.product },
     category: req.product.category
   })
     .limit(limit)
@@ -166,7 +163,6 @@ exports.listRelated = (req, res) => {
 };
 
 exports.listCategories = (req, res) => {
-  //to get all the categories that are used in the product model
   Product.distinct("category", {}, (err, categories) => {
     if (err) {
       return res.status(400).json({
@@ -224,18 +220,13 @@ exports.photo = (req, res, next) => {
 };
 
 exports.listSearch = (req, res) => {
-  //create query object to search value and category value
   const query = {};
-
-  //asgign search value to query.name
 
   if (req.query.search) {
     query.name = { $regex: req.query.search, $options: "i" };
-    //assigb categort value to query category
     if (req.query.category && req.query.category != "All") {
       query.category = req.query.category;
     }
-    //find the product based on query object
 
     Product.find(query, (err, products) => {
       if (err) {

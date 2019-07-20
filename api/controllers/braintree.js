@@ -23,7 +23,6 @@ exports.processPayment = (req, res) => {
   let nonceFromTheClient = req.body.paymentMethodNonce;
   let amountFromTheClient = req.body.amount;
 
-  //charge
   let newTransation = gateway.transaction.sale(
     {
       amount: amountFromTheClient,

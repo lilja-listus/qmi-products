@@ -37,7 +37,7 @@ exports.listOrders = (req, res) => {
 };
 
 exports.getStatusValues = (req, res) => {
-  res.json(Order.schema.path("status").enumValues); // will be able to send enum values to the front
+  res.json(Order.schema.path("status").enumValues);
 };
 
 exports.updateOrderStatus = (req, res) => {
