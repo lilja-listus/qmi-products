@@ -50,4 +50,4 @@ Don't forget to reboot the server `server reboot nginx`
 - `cd app/` and run `yarn build`
 - create in both `api/` and `app/` `.env` files with configurations;
 - install `pm2`;
-- run `pm2 start server.js` in `app/` and `pm2 start app.js` in `api`;
+- run `pm2 start server.js` in `app/` and `pm2 start app.js` in `api`.
