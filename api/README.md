@@ -1,19 +1,37 @@
 # Description
 
-This is an online store for QMI products.
+Backend for the store.
 
 # Frameworks and Libraries
 
 I am using Node.js together with Express for building my server.
-For the workflow I am using nodemon, which restarts server while changes in the development.
-Morgan for the routes and it shows info like `POST /api/signup 400 123.790 ms - 177`
-Body-parser to get data from client side. cookie-parser for cookies.
-Express validator.
-express-jwt for authorization check
-jsonwebtoken to generate token
-Formidable to work with images.
-Lodash.
-Cors to enable middleware. To handle requests of different origin.
+
+- For the workflow I am using nodemon, which restarts server while changes in the development.
+
+- On the prod I use pm2 library that keeps server running (`pm2 start app.js`);
+
+- Morgan for the routes and it shows info like `POST /api/signup 400 123.790 ms - 177`
+
+- Body-parser to get data from client side.
+
+- Cookie-parser for cookies.
+
+- Express validator.
+
+- express-jwt for authorization check
+
+- jsonwebtoken to generate token
+
+```
+//generate a signed token with user id and secret
+const token = jwt.sign({ \_id: user.\_id }, process.env.JWT_SECRET);
+```
+
+- Formidable to work with images.
+
+- Lodash.
+
+- Cors to enable middleware. To handle requests of different origin.
 
 # Database
 
@@ -32,17 +50,11 @@ crypto.createHmac('ssha1', this.salt)
 # Functionality
 
 Only admin can create new category and he can access data of other users.
-The routes are protected by middleware that checks whether the user is signed in, authorized and whether is admin for specific routes.
+The routes are protected by middleware, that check whether the user is signed in, authorized and whether is admin for specific routes.
 
-braintree for payments.
+I use Braintree paying system for payments.
 
-//generate a signed token with user id and secret
-const token = jwt.sign({ \_id: user.\_id }, process.env.JWT_SECRET);
-
-    //return response with user and token to frontend client
-    const { _id, name, email, role } = user;
-    return res.json({ token, user: { _id, email, name, role } });
-
+```
 //charge
 let newTransation = gateway.transaction.sale(
 {
@@ -61,10 +73,31 @@ res.json(result);
 }
 );
 
+```
+
+# Communication with the client. Examples.
+
+The client side communicates with api
+
+## verification
+
+```
+   //return response with user and token to frontend client
+    const { _id, name, email, role } = user;
+    return res.json({ token, user: { _id, email, name, role } });
+```
+
+## send values
+
+```
 exports.getStatusValues = (req, res) => {
 res.json(Order.schema.path("status").enumValues); // will be able to send enum values to the front
 };
+```
 
+## find product
+
+```
 Product.find()
 .select("-photo") // we want to deselect it for this find
 .populate("category")
@@ -104,3 +137,4 @@ query.category = req.query.category;
 
 }
 };
+```
