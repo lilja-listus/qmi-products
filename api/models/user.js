@@ -41,7 +41,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-//virtual field
 userSchema
   .virtual("password")
   .set(function(password) {
@@ -55,7 +54,7 @@ userSchema
 
 userSchema.methods = {
   authenticate: function(plainText) {
-    return this.encryptPassword(plainText) === this.hashed_password; //will return either true or false => we either authenticate user or not
+    return this.encryptPassword(plainText) === this.hashed_password;
   },
 
   encryptPassword: function(password) {
