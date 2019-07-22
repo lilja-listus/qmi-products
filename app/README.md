@@ -81,6 +81,8 @@ To populate the state in the init() function set values:
         ```
 ````
 
+## Communication with api examples
+
 //make request to api to create category
 
 ```
@@ -92,8 +94,6 @@ setError("");
 setSuccess(true);
 }
 ```
-
-`//tslint:disable`
 
 ```
 //function that connects to backend
@@ -116,6 +116,9 @@ export const createCategory = (userId, token, category) => {
 };
 ```
 
+## populating the state
+
+```
 // populate the state
 setValues({
 ...values,
@@ -134,38 +137,24 @@ if (typeof window !== "undefined") {
 localStorage.setItem("jwt", JSON.stringify(data)); // jwt is the key, second argument is the data we save under that key
 next();
 }
+```
 
-//
+## JWT token
 
+```
 localStorage.removeItem("jwt"); // we remove jwt if it exists
-
-//
 
 if (localStorage.getItem("jwt")) {
 return JSON.parse(localStorage.getItem("jwt")); //to make sure it is in JSON format we use parse
 } else {
 return false;
 }
+```
 
-//
-const handleToggle = c => () => {
-const currentCategoryId = checked.indexOf(c); // return the first index or -1
-const newCheckedCategoryId = [...checked]; // will return everything that is in the state
-//if currently checked was not in checked state > push
-//else pull/take off
-if (currentCategoryId === -1) {
-newCheckedCategoryId.push(c);
-} else {
-newCheckedCategoryId.splice(currentCategoryId, 1);
-}
+## payment
 
-//
-return categories.map((
-c,
-i //key={i} - so that each of them have unique index
-)
+```
 
-///
 const buy = () => {
 setData({ loading: true });
 //send the nonce to your server
@@ -174,15 +163,21 @@ setData({ loading: true });
     let nonce;
 
     let getNonce = data.instance
+```
 
-//
+## fetch product
+
+```
 const searchSubmit = e => {
 e.preventDefault(); // so that page is not reloading
 //request to the backend to fetch the product
 searchData();
 };
+```
 
-///
+## load categories
+
+```
 //the method that loads the categories
 const init = () => {
 getCategories().then(data => {
@@ -193,3 +188,4 @@ setCategories(data);
 }
 });
 };
+```
