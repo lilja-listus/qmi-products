@@ -4,10 +4,13 @@ This is an online store for QMI products.
 
 # Technology
 
-Backend: node.js
-Frontend: react.js
+Backend: node.js;
+Frontend: react.js;
+Database: MongoDB on Atlas;
 
-Configure nginx server:
+Server runs on a vps machine on ubuntu 16.4 with nginx.
+
+#Configure nginx server:
 
 add in /etc/nginx/conf.d default.conf
 
@@ -37,3 +40,14 @@ index index.html index.htm;
 ```
 
 Don't forget to reboot the server `server reboot nginx`
+
+# configure and run the project
+
+- create folder for the project;
+- `git clone` the project;
+- install yarn;
+- `yarn` to install all the modules;
+- `cd app/` and run `yarn build`
+- create in both `api/` and `app/` `.env` files with configurations;
+- install `pm2`;
+- run `pm2 start server.js` in `app/` and `pm2 start app.js` in `api`;
