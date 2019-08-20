@@ -1,0 +1,6 @@
+
+--reporter spec
+--recursive
+--exit
+
+./test/unit/**/*test.js*
